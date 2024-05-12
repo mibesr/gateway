@@ -26,6 +26,7 @@ public class GatewayServiceImpl implements GatewayService {
             System.out.println("requestMessageTemplate: " + context.getInterfaceConf().getMessageConf().getRequestMessageTemplate());
             System.out.println("assembledRequestMessage: " + context.getAssembledRequestMessage());
             System.out.println("originalResponseMessage: " + context.getOriginalResponseMessage());
+            System.out.println("responseMessageTemplate: " + context.getInterfaceConf().getMessageConf().getResponseMessageTemplate());
             System.out.println("assembledResponseMessage: " + context.getAssembledResponseMessage());
 
             return buildResponse(context.getAssembledResponseMessage());
