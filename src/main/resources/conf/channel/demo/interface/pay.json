@@ -1,0 +1,25 @@
+{
+  "name": "demo.pay",
+  "handlerChainType": "INNER_TO_OUTER",
+  "instConfGroupName": "demo_channel",
+  "messageConf": {
+    "requestMessageTemplate": "{\n    \"order_id\": \"${requestData.orderNo}\",\n    \"amount\": \"${requestData.payAmount.amount}\",\n    \"currency\": \"${requestData.payAmount.currency}\",\n    \"mobile_no\": \"${requestData.mobileNo}\",\n    \"order_info\": \"${requestData.orderInfo}\",\n    \"date\": \"${function.Datetime.formatDateString(requestData.requestTime, 'yyyy-MM-dd HH:mm:ss')}\",\n    \"signature\": \"${requestData.signatureMessage}\"\n}",
+    "responseMessageTemplate": "{\n    \"channelOrderNo\": \"${responseData.order_id}\",\n    \"payAmount\": \"${function.Money.of(responseData.amount, responseData.currency)}\",\n    \"channelResponseCode\": \"${responseData.code}\",\n    \"channelResponseMessage\": \"${responseData.message}\"\n}"
+  },
+  "messageType": "JSON",
+  "mockConf": {
+    "requestContext": "",
+    "requestMessage": "",
+    "responseContext": "{\n    \"order_id\": \"8888888888899999999\",\n    \"amount\": 888,\n    \"currency\": \"RMB\",\n    \"code\": \"000000\",\n    \"message\": \"success\",\n    \"date\": \"2024-05-12 18:00:24\"\n}",
+    "responseMessage": ""
+  },
+  "sendConf": {
+    "url": "${instConfData.payUrl}"
+  },
+  "signConf": {
+
+  },
+  "verifyConf": {
+
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "groupName": "demo_channel",
+  "values": {
+    "host": "http://www.demo.com",
+    "refundUrl": "/refund.do",
+    "payUrl": "/pay.do",
+    "signKeyIndex": "demo_private_key"
+  }
+}
