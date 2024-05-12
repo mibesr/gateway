@@ -1,18 +1,20 @@
 package com.demo.gateway.engine.impl;
 
+import com.demo.gateway.cache.FunctionCache;
 import com.demo.gateway.cache.InstConfCache;
 import com.demo.gateway.cache.InterfaceConfCache;
 import com.demo.gateway.engine.EngineService;
 import com.demo.gateway.engine.context.EngineContext;
-import com.demo.gateway.cache.FunctionCache;
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.chain.HandlerChainFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
+import static org.hibernate.validator.internal.util.Contracts.assertTrue;
 
 @Component
 public class EngineServiceImpl implements EngineService {
@@ -30,6 +32,8 @@ public class EngineServiceImpl implements EngineService {
     public void run(EngineContext context) {
         initContext(context);
         List<BaseHandler> handlers = handlerChainFactory.getHandlerChain(context.getHandlerChainType());
+        assertTrue(!CollectionUtils.isEmpty(handlers), "can not find handler chain, handlerChainType:  "
+                + context.getHandlerChainType());
 
         handlers.forEach(handler -> handler.run(context));
     }

@@ -3,7 +3,6 @@ package com.demo.gateway.engine.handler.chain;
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.HandlerType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +19,7 @@ public class HandlerChainFactory {
             HandlerType.SEND,
             HandlerType.PARSE_ORIGINAL_RESPONSE_MESSAGE,
             HandlerType.PARSE_HEAD_MESSAGE,
+            HandlerType.VERIFY,
             HandlerType.CONVERT_ORIGINAL_REQUEST_MESSAGE,
             HandlerType.ASSEMBLE_RESPONSE_MESSAGE
     );

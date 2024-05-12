@@ -1,4 +1,5 @@
 {
+  "name": "demo.pay",
   "handlerChainType": "INNER_TO_OUTER",
   "instConfGroupName": "demo_channel",
   "messageConf": {
@@ -12,7 +13,6 @@
     "responseContext": "",
     "responseMessage": ""
   },
-  "name": "demo.pay",
   "sendConf": {
     "url": "${_C.payUrl}"
   },
