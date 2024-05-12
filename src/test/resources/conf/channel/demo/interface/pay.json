@@ -1,0 +1,25 @@
+{
+  "handlerChainType": "INNER_TO_OUTER",
+  "instConfGroupName": "demo_channel",
+  "messageConf": {
+    "requestMessageTemplate": "{\n    \"order_id\": \"${_O_REQ.orderNo}\",\n    \"amount\": \"${_O_REQ.payAmount.amount}\",\n    \"currency\": \"${_O_REQ.payAmount.currency}\",\n    \"mobile_no\": \"${_O_REQ.mobileNo}\",\n    \"order_info\": \"${_O_REQ.orderInfo}\",\n    \"date\": \"${_F.Datetime.formatDateString(_O_REQ.requestTime, 'yyyy-MM-dd HH:mm:ss')}\",\n    \"signature\": \"${_S.signatureMessage}\"\n}",
+    "responseMessageTemplate": "{\n    \"channelOrderNo\": \"${_O_RSP.order_id}\",\n    \"payAmount\": \"${_F.Money.of(_O_RSP.amount, _O_RSP.currency}\",\n    \"channelResponseCode\": \"${_O_RSP.code}\",\n    \"channelResponseMessage\": \"${_O_R.message}\"\n}"
+  },
+  "messageType": "JSON",
+  "mockConf": {
+    "requestContext": "",
+    "requestMessage": "",
+    "responseContext": "",
+    "responseMessage": ""
+  },
+  "name": "demo.pay",
+  "sendConf": {
+    "url": "${_C.payUrl}"
+  },
+  "signConf": {
+
+  },
+  "verifyConf": {
+
+  }
+}
