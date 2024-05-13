@@ -1,23 +1,19 @@
 package com.demo.gateway.model;
 
 /**
- * 报文类型
+ * 签名算法
  *
  * @author 隐墨星辰（公众号同名）
  */
-public enum MessageType {
-    /**
-     * JSON
-     */
-    JSON,
+public enum SignType {
 
     /**
-     * XML
+     * RSA
      */
-    XML,
+    RSA,
 
     /**
-     * KV
+     * HMAC
      */
-    KV
+    HMAC
 }

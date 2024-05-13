@@ -4,10 +4,15 @@ import com.demo.gateway.api.GatewayService;
 import com.demo.gateway.api.request.GatewayRequest;
 import com.demo.gateway.api.response.GatewayResponse;
 import com.demo.gateway.engine.HandlerEngineService;
-import com.demo.gateway.engine.context.EngineContext;
+import com.demo.gateway.engine.context.HandlerEngineContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ *
+ * @author 隐墨星辰（公众号同名）
+ */
 @Component
 public class GatewayServiceImpl implements GatewayService {
 
@@ -18,7 +23,7 @@ public class GatewayServiceImpl implements GatewayService {
     public GatewayResponse process(GatewayRequest request) {
 
         try {
-            EngineContext context = buildContext(request);
+            HandlerEngineContext context = buildContext(request);
             engineService.run(context);
 
             // TODO LOG
@@ -48,8 +53,8 @@ public class GatewayServiceImpl implements GatewayService {
                 .build();
     }
 
-    private EngineContext buildContext(GatewayRequest request) {
-        return EngineContext.builder()
+    private HandlerEngineContext buildContext(GatewayRequest request) {
+        return HandlerEngineContext.builder()
                 .requestContext(request.getRequestContext())
                 .interfaceName(request.getInterfaceName())
                 .build();

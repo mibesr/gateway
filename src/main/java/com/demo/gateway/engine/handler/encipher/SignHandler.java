@@ -1,17 +1,22 @@
 package com.demo.gateway.engine.handler.encipher;
 
 import com.demo.gateway.common.GatewayException;
-import com.demo.gateway.engine.context.EngineContext;
+import com.demo.gateway.engine.context.HandlerEngineContext;
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.HandlerType;
 import com.demo.gateway.model.SignConf;
 import org.springframework.stereotype.Component;
 
+/**
+ * 签名处理器
+ *
+ * @author 隐墨星辰（公众号同名）
+ */
 @Component
 public class SignHandler extends BaseHandler {
 
     @Override
-    public void run(EngineContext context) throws GatewayException {
+    public void run(HandlerEngineContext context) throws GatewayException {
 
         SignConf signConf = context.getInterfaceConf().getSignConf();
 

@@ -11,6 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Demo渠道UT
+ *
+ * @author 隐墨星辰（公众号同名）
+ */
 @SpringBootTest
 public class DemoTest {
 
@@ -28,9 +33,12 @@ public class DemoTest {
 
         GatewayResponse response = gatewayService.process(request);
 
+        RuntimeHelper.clear();
+
         System.out.println(response);
         assertNotNull(response);
         assertTrue(response.isSuccess());
+
     }
 
     private GatewayRequest buildRequest() {

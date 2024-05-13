@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 机构配置测试
+ *
+ * @author 隐墨星辰（公众号同名）
+ */
 @SpringBootTest
 public class InstConfTest {
 

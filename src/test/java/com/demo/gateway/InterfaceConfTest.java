@@ -11,6 +11,11 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 接口配置测试
+ *
+ * @author 隐墨星辰（公众号同名）
+ */
 @SpringBootTest
 public class InterfaceConfTest {
 

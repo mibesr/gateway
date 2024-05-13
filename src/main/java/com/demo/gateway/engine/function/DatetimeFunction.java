@@ -6,6 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * 日期时间函数
+ *
+ * @author 隐墨星辰（公众号同名）
+ */
 @Component
 public class DatetimeFunction extends BaseFunction {
 
