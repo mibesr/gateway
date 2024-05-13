@@ -3,7 +3,8 @@ package com.demo.gateway.engine.impl;
 import com.demo.gateway.cache.FunctionCache;
 import com.demo.gateway.cache.InstConfCache;
 import com.demo.gateway.cache.InterfaceConfCache;
-import com.demo.gateway.engine.EngineService;
+import com.demo.gateway.common.RuntimeHelper;
+import com.demo.gateway.engine.HandlerEngineService;
 import com.demo.gateway.engine.context.EngineContext;
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.chain.HandlerChainFactory;
@@ -17,7 +18,7 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.hibernate.validator.internal.util.Contracts.assertTrue;
 
 @Component
-public class EngineServiceImpl implements EngineService {
+public class HandlerEngineServiceImpl implements HandlerEngineService {
 
     @Autowired
     private InstConfCache instConfCache;
@@ -39,6 +40,9 @@ public class EngineServiceImpl implements EngineService {
     }
 
     private void initContext(EngineContext context) {
+
+        context.setUseMock(RuntimeHelper.isUseMock());
+
         context.setInterfaceConf(interfaceConfCache.getInterfaceConfByName(context.getInterfaceName()));
         assertNotNull(context.getInterfaceConf(), "can not find interface: " + context.getInterfaceName());
 

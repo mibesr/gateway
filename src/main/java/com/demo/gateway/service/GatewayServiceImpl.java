@@ -3,7 +3,7 @@ package com.demo.gateway.service;
 import com.demo.gateway.api.GatewayService;
 import com.demo.gateway.api.request.GatewayRequest;
 import com.demo.gateway.api.response.GatewayResponse;
-import com.demo.gateway.engine.EngineService;
+import com.demo.gateway.engine.HandlerEngineService;
 import com.demo.gateway.engine.context.EngineContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class GatewayServiceImpl implements GatewayService {
 
     @Autowired
-    private EngineService engineService;
+    private HandlerEngineService engineService;
 
     @Override
     public GatewayResponse process(GatewayRequest request) {

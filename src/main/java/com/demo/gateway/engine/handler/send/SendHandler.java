@@ -1,24 +1,25 @@
-package com.demo.gateway.engine.handler.convert;
+package com.demo.gateway.engine.handler.send;
 
-import com.alibaba.fastjson.JSON;
 import com.demo.gateway.common.GatewayException;
 import com.demo.gateway.engine.context.EngineContext;
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.HandlerType;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
-public class ConvertOriginalRequestHandler extends BaseHandler {
+public class SendHandler extends BaseHandler {
+
     @Override
     public void run(EngineContext context) throws GatewayException {
-        String requestContext = context.getRequestContext();
-        Map<String, Object> originalRequestData = JSON.parseObject(requestContext, HashMap.class);
+        if (context.isUseMock()) {
+            // 使用mock
+            context.setOriginalResponseMessage(context.getInterfaceConf().getMockConf().getResponseContext());
+        }
 
-        context.getRequestData().putAll(originalRequestData);
+        // TODO 外发处理
+
     }
+
 
     @Override
     public String getHandlerName() {
@@ -32,6 +33,6 @@ public class ConvertOriginalRequestHandler extends BaseHandler {
 
     @Override
     public HandlerType getHandlerType() {
-        return HandlerType.CONVERT_ORIGINAL_REQUEST_MESSAGE;
+        return HandlerType.SEND;
     }
 }

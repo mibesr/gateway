@@ -3,9 +3,10 @@ package com.demo.gateway.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Component;
+import lombok.ToString;
 
 @Data
+@ToString
 @AllArgsConstructor
 public class Money {
     private long amount;

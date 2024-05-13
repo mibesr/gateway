@@ -11,16 +11,16 @@ import org.springframework.stereotype.Component;
 import static org.hibernate.validator.internal.util.Contracts.assertNotEmpty;
 
 @Component
-public class AssembleRequestMessageHandler extends BaseHandler {
+public class AssembleResponseMessageHandler extends BaseHandler {
 
     @Override
     public void run(EngineContext context) throws GatewayException {
-        String requestMessageTemplate = context.getInterfaceConf().getMessageConf().getRequestMessageTemplate();
-        assertNotEmpty(requestMessageTemplate, "requestMessageTemplate can not be empty!");
+        String responseMessageTemplate = context.getInterfaceConf().getMessageConf().getResponseMessageTemplate();
+        assertNotEmpty(responseMessageTemplate, "responseMessageTemplate can not be empty!");
 
-        Template template = GroovyUtil.createTemplate(requestMessageTemplate);
-        String requestMessage = template.make(context.getRuntimeContext()).toString();
-        context.setAssembledRequestMessage(requestMessage);
+        Template template = GroovyUtil.createTemplate(responseMessageTemplate);
+        String responseMessage = template.make(context.getRuntimeContext()).toString();
+        context.setAssembledResponseMessage(responseMessage);
     }
 
 
@@ -36,6 +36,6 @@ public class AssembleRequestMessageHandler extends BaseHandler {
 
     @Override
     public HandlerType getHandlerType() {
-        return HandlerType.ASSEMBLE_REQUEST_MESSAGE;
+        return HandlerType.ASSEMBLE_RESPONSE_MESSAGE;
     }
 }

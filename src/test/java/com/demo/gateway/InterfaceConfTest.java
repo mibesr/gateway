@@ -47,8 +47,8 @@ public class InterfaceConfTest {
 
     private SendConf buildSendConf() {
         return SendConf.builder()
-                .host("${_C.host}")
-                .url("${_C.payUrl}")
+                .host("${instConfData.host}")
+                .url("${instConfData.payUrl}")
                 .build();
     }
 
@@ -64,19 +64,19 @@ public class InterfaceConfTest {
     private MessageConf buildMessageConf() {
         return MessageConf.builder()
                 .requestMessageTemplate("{\n" +
-                        "    \"order_id\": \"${_O_REQ.orderNo}\",\n" +
-                        "    \"amount\": \"${_O_REQ.payAmount.amount}\",\n" +
-                        "    \"currency\": \"${_O_REQ.payAmount.currency}\",\n" +
-                        "    \"mobile_no\": \"${_O_REQ.mobileNo}\",\n" +
-                        "    \"order_info\": \"${_O_REQ.orderInfo}\",\n" +
-                        "    \"date\": \"${_F.Datetime.formatDateString(_O_REQ.requestTime, 'yyyy-MM-dd HH:mm:ss')}\",\n" +
-                        "    \"signature\": \"${_S.signatureMessage}\"\n" +
+                        "    \"order_id\": \"${requestData.orderNo}\",\n" +
+                        "    \"amount\": \"${requestData.payAmount.amount}\",\n" +
+                        "    \"currency\": \"${requestData.payAmount.currency}\",\n" +
+                        "    \"mobile_no\": \"${requestData.mobileNo}\",\n" +
+                        "    \"order_info\": \"${requestData.orderInfo}\",\n" +
+                        "    \"date\": \"${function.Datetime.formatDateString(requestData.requestTime, 'yyyy-MM-dd HH:mm:ss')}\",\n" +
+                        "    \"signature\": \"${requestData.signatureMessage}\"\n" +
                         "}")
                 .responseMessageTemplate("{\n" +
-                        "    \"channelOrderNo\": \"${_O_RSP.order_id}\",\n" +
-                        "    \"payAmount\": \"${_F.Money.of(_O_RSP.amount, _O_RSP.currency}\",\n" +
-                        "    \"channelResponseCode\": \"${_O_RSP.code}\",\n" +
-                        "    \"channelResponseMessage\": \"${_O_R.message}\"\n" +
+                        "    \"channelOrderNo\": \"${responseData.order_id}\",\n" +
+                        "    \"payAmount\": \"${function.Money.of(responseData.amount, responseData.currency}\",\n" +
+                        "    \"channelResponseCode\": \"${responseData.code}\",\n" +
+                        "    \"channelResponseMessage\": \"${responseData.message}\"\n" +
                         "}")
                 .build();
     }

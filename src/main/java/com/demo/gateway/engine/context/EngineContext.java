@@ -2,7 +2,6 @@ package com.demo.gateway.engine.context;
 
 import com.demo.gateway.engine.function.BaseFunction;
 import com.demo.gateway.engine.handler.chain.HandlerChainType;
-import com.demo.gateway.model.InstConf;
 import com.demo.gateway.model.InterfaceConf;
 import lombok.Builder;
 import lombok.Data;
@@ -15,10 +14,8 @@ import java.util.Map;
 @Builder
 @ToString
 public class EngineContext {
-    private Map<String, Object> originalRequestData;
-    private Map<String, Object> signData;
-    private Map<String, Object> verifyData;
-    private Map<String, Object> originalResponseData;
+    private Map<String, Object> requestData;
+    private Map<String, Object> responseData;
     private Map<String, BaseFunction> functionData;
     private Map<String, String> instConfData;
     private String assembledRequestMessage;
@@ -29,19 +26,16 @@ public class EngineContext {
     private HandlerChainType handlerChainType;
     private InterfaceConf interfaceConf;
     private Map<String, Object> runtimeContext;
+    private boolean useMock;
 
     public void initRuntimeContext() {
-        originalRequestData = new HashMap<>();
-        signData = new HashMap<>();
-        verifyData = new HashMap<>();
-        originalResponseData = new HashMap<>();
+        requestData = new HashMap<>();
+        responseData = new HashMap<>();
 
         runtimeContext = new HashMap<>();
-        runtimeContext.put("_O_REQ", originalRequestData);
-        runtimeContext.put("_O_RSP", originalResponseData);
-        runtimeContext.put("_F", functionData);
-        runtimeContext.put("_C", instConfData);
-        runtimeContext.put("_S", signData);
-        runtimeContext.put("_V", verifyData);
+        runtimeContext.put("requestData", requestData);
+        runtimeContext.put("responseData", responseData);
+        runtimeContext.put("instConfData", instConfData);
+        runtimeContext.put("function", functionData);
     }
 }
