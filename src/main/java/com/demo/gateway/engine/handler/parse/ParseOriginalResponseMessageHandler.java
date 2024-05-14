@@ -14,7 +14,7 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotEmpty;
 /**
  * 解析原始报文处理器
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
 public class ParseOriginalResponseMessageHandler extends BaseHandler {

@@ -3,7 +3,7 @@ package com.demo.gateway.engine.function;
 /**
  * 内联函数基类
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 public abstract class BaseFunction {
 

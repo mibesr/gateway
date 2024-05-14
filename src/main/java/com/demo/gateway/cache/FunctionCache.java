@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * 内联函数缓存
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
 public class FunctionCache {

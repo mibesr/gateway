@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 /**
  * 网关请求
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Data
 @Builder

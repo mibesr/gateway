@@ -6,7 +6,7 @@ import com.demo.gateway.api.response.GatewayResponse;
 /**
  * 服务入口
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 public interface GatewayService {
 

@@ -5,7 +5,7 @@ import com.demo.gateway.engine.context.HandlerEngineContext;
 /**
  * 处理器链引擎服务
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 public interface HandlerEngineService {
 

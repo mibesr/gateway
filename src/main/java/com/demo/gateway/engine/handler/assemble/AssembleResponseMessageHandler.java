@@ -5,7 +5,6 @@ import com.demo.gateway.engine.context.HandlerEngineContext;
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.HandlerType;
 import com.demo.gateway.groovy.GroovyUtil;
-import groovy.text.Template;
 import org.springframework.stereotype.Component;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotEmpty;
@@ -13,7 +12,7 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotEmpty;
 /**
  * 组装返回报文处理器
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
 public class AssembleResponseMessageHandler extends BaseHandler {
@@ -23,8 +22,7 @@ public class AssembleResponseMessageHandler extends BaseHandler {
         String responseMessageTemplate = context.getInterfaceConf().getMessageConf().getResponseMessageTemplate();
         assertNotEmpty(responseMessageTemplate, "responseMessageTemplate can not be empty!");
 
-        Template template = GroovyUtil.createTemplate(responseMessageTemplate);
-        String responseMessage = template.make(context.getRuntimeContext()).toString();
+        String responseMessage = GroovyUtil.make(responseMessageTemplate, context.getRuntimeContext());
         context.setAssembledResponseMessage(responseMessage);
     }
 

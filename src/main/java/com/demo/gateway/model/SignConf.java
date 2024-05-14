@@ -1,19 +1,17 @@
 package com.demo.gateway.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * 签名配置
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Data
 @Builder
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class SignConf {
 
     /**
@@ -30,4 +28,9 @@ public class SignConf {
      * 签名密钥索引号
      */
     private String signKeyIndex;
+
+    /**
+     * 签名算法
+     */
+    private String algorithm;
 }

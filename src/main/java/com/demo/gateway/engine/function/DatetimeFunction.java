@@ -9,7 +9,7 @@ import java.util.Locale;
 /**
  * 日期时间函数
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
 public class DatetimeFunction extends BaseFunction {

@@ -2,6 +2,7 @@ package com.demo.gateway.cache;
 
 import com.alibaba.fastjson.JSON;
 import com.demo.gateway.model.InterfaceConf;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,10 @@ import java.util.Map;
 /**
  * 接口配置缓存
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
+@Log4j2
 public class InterfaceConfCache {
     private final Map<String, InterfaceConf> interfaceConfMap = new HashMap<>();
 
@@ -30,8 +32,7 @@ public class InterfaceConfCache {
         File file = resource.getFile();
 
         String fileContext = FileUtils.readFileToString(file);
-        // TODO LOG
-        System.out.println(fileContext);
+        log.info("fileContext: {}", fileContext);
 
         InterfaceConf interfaceConf = JSON.parseObject(fileContext, InterfaceConf.class);
         interfaceConfMap.put(interfaceConf.getName(), interfaceConf);

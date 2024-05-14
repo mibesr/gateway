@@ -20,7 +20,7 @@ import static org.hibernate.validator.internal.util.Contracts.assertTrue;
 /**
  * 处理器链引擎服务实现
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
 public class HandlerEngineServiceImpl implements HandlerEngineService {

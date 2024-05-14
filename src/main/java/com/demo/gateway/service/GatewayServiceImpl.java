@@ -5,15 +5,15 @@ import com.demo.gateway.api.request.GatewayRequest;
 import com.demo.gateway.api.response.GatewayResponse;
 import com.demo.gateway.engine.HandlerEngineService;
 import com.demo.gateway.engine.context.HandlerEngineContext;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *
- *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
+@Log4j2
 public class GatewayServiceImpl implements GatewayService {
 
     @Autowired
@@ -26,18 +26,16 @@ public class GatewayServiceImpl implements GatewayService {
             HandlerEngineContext context = buildContext(request);
             engineService.run(context);
 
-            // TODO LOG
-            System.out.println("requestContext: " + context.getRequestContext());
-            System.out.println("requestMessageTemplate: " + context.getInterfaceConf().getMessageConf().getRequestMessageTemplate());
-            System.out.println("assembledRequestMessage: " + context.getAssembledRequestMessage());
-            System.out.println("originalResponseMessage: " + context.getOriginalResponseMessage());
-            System.out.println("responseMessageTemplate: " + context.getInterfaceConf().getMessageConf().getResponseMessageTemplate());
-            System.out.println("assembledResponseMessage: " + context.getAssembledResponseMessage());
+            log.info("requestContext: {}", context.getRequestContext());
+            log.info("requestMessageTemplate: {}", context.getInterfaceConf().getMessageConf().getRequestMessageTemplate());
+            log.info("assembledRequestMessage: {}", context.getAssembledRequestMessage());
+            log.info("originalResponseMessage: {}", context.getOriginalResponseMessage());
+            log.info("responseMessageTemplate: {}", context.getInterfaceConf().getMessageConf().getResponseMessageTemplate());
+            log.info("assembledResponseMessage: {}", context.getAssembledResponseMessage());
 
             return buildResponse(context.getAssembledResponseMessage());
         } catch (Exception e) {
-            //TODO LOG
-            e.printStackTrace();
+            log.error("An error occurred, request: {}", request, e);
 
             return GatewayResponse.builder()
                     .success(false)

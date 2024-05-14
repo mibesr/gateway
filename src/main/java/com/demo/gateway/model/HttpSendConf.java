@@ -1,20 +1,18 @@
 package com.demo.gateway.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * 发送配置
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Data
 @Builder
 @ToString
 @AllArgsConstructor
-public class SendConf {
+@NoArgsConstructor
+public class HttpSendConf {
 
     /**
      * host
@@ -29,5 +27,5 @@ public class SendConf {
     /**
      * 头配置
      */
-    private HeadConf headConf;
+    private HttpHeadConf httpHeadConf;
 }

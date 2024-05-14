@@ -1,21 +1,19 @@
 package com.demo.gateway.model;
 
 import com.demo.gateway.engine.handler.chain.HandlerChainType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 
 /**
  * 渠道接口配置
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Data
 @Builder
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class InterfaceConf {
     /**
      * 名称
@@ -45,7 +43,7 @@ public class InterfaceConf {
     /**
      * 发送配置
      */
-    private SendConf sendConf;
+    private HttpSendConf httpSendConf;
 
     /**
      * 报文类型

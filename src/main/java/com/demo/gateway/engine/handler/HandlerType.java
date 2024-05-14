@@ -1,10 +1,13 @@
 package com.demo.gateway.engine.handler;
 
+import lombok.ToString;
+
 /**
  * 处理器类型
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
+@ToString
 public enum HandlerType {
     /**
      * 原始请求转换

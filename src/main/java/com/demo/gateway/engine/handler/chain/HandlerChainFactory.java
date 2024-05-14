@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * 处理器链工厂
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
 public class HandlerChainFactory {

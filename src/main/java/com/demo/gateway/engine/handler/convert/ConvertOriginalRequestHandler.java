@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * 原始请求转换处理器
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Component
 public class ConvertOriginalRequestHandler extends BaseHandler {

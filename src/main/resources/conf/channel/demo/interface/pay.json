@@ -1,25 +1,32 @@
 {
-  "name": "demo.pay",
   "handlerChainType": "INNER_TO_OUTER",
+  "httpSendConf": {
+    "host": "${instConfData.host}",
+    "url": "${instConfData.payUrl}"
+  },
   "instConfGroupName": "demo_channel",
   "messageConf": {
     "requestMessageTemplate": "{\n    \"order_id\": \"${requestData.orderNo}\",\n    \"amount\": \"${requestData.payAmount.amount}\",\n    \"currency\": \"${requestData.payAmount.currency}\",\n    \"mobile_no\": \"${requestData.mobileNo}\",\n    \"order_info\": \"${requestData.orderInfo}\",\n    \"date\": \"${function.Datetime.formatDateString(requestData.requestTime, 'yyyy-MM-dd HH:mm:ss')}\",\n    \"signature\": \"${requestData.signatureMessage}\"\n}",
     "responseMessageTemplate": "{\n    \"channelOrderNo\": \"${responseData.order_id}\",\n    \"payAmount\": \"${function.Money.of(responseData.amount, responseData.currency)}\",\n    \"channelResponseCode\": \"${responseData.code}\",\n    \"channelResponseMessage\": \"${responseData.message}\"\n}"
   },
-  "messageType": "JSON",
+  "messageType": "MessageType.JSON",
   "mockConf": {
     "requestContext": "",
     "requestMessage": "",
-    "responseContext": "{\n    \"order_id\": \"8888888888899999999\",\n    \"amount\": 888,\n    \"currency\": \"RMB\",\n    \"code\": \"000000\",\n    \"message\": \"success\",\n    \"date\": \"2024-05-12 18:00:24\"\n}",
-    "responseMessage": ""
+    "responseContext": "",
+    "responseMessage": "{\n    \"order_id\": \"8888888888899999999\",\n    \"amount\": 888,\n    \"currency\": \"RMB\",\n    \"code\": \"000000\",\n    \"message\": \"success\",\n    \"date\": \"2024-05-12 18:00:24\",\n    \"signature\": \"XEMtCFsYxNYCTIsXY0207BW1OqJlBiezEgqk+gnpiJo/uD7llsXQ9qjBR35WLGOyNezw5wmowCDnQpBmMEMtyTfbJfTa7b8TisjZquo6p0JTZSxMBWF/Iv0E6BG+zHHh6CwN7TRB6zWG/HP7cp1uIQv0NQ2j/wDCs4+OieKIRqrsQYSAY6qG21gBriUKQmVlWf6FGKpX8g7eFiSabnDNSH9tTDuSbn9nmkbldXqVvbuqQVRb8TxqQCy65Mbfsd4te2oFl4qPpqGXkdk9TezxWF9+GUqwbbFkWJe4T2961slr6dfNeeD8sM5qhs7RFV3IRUc6AYyqqFJJzO+cqirNug==\"\n}"
   },
-  "sendConf": {
-    "url": "${instConfData.payUrl}"
-  },
+  "name": "demo.pay",
   "signConf": {
-
+    "algorithm": "SHA256withRSA",
+    "signKeyIndex": "demo_channel_sign_private_key",
+    "signPlainTemplate": "{\n    \"order_id\": \"${requestData.orderNo}\",\n    \"amount\": \"${requestData.payAmount.amount}\",\n    \"currency\": \"${requestData.payAmount.currency}\"\n}",
+    "signType": "RSA"
   },
   "verifyConf": {
-
+    "algorithm": "SHA256withRSA",
+    "verifyKeyIndex": "demo_channel_verify_public_key",
+    "verifyPlainTemplate": "{\n    \"order_id\": \"${responseData.order_id}\",\n    \"amount\": \"${responseData.amount}\",\n    \"currency\": \"${responseData.currency}\",\n    \"code\": \"${responseData.code}\",\n    \"message\": \"${responseData.message}\",\n    \"date\": \"${responseData.date}\"\n}",
+    "verifyType": "RSA"
   }
 }

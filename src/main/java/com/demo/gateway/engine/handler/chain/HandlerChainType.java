@@ -3,7 +3,7 @@ package com.demo.gateway.engine.handler.chain;
 /**
  * 处理器链类型
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 public enum HandlerChainType {
     /**

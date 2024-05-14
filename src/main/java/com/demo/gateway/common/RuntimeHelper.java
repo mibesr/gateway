@@ -3,7 +3,7 @@ package com.demo.gateway.common;
 /**
  * 运行时帮助类
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 public class RuntimeHelper {
     private static final ThreadLocal<RuntimeHelper> RUNTIME_HELPER = new ThreadLocal<>();

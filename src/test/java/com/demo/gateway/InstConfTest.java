@@ -1,8 +1,8 @@
 package com.demo.gateway;
 
 import com.alibaba.fastjson.JSON;
-import com.demo.gateway.engine.handler.chain.HandlerChainType;
-import com.demo.gateway.model.*;
+import com.demo.gateway.model.InstConf;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,9 +16,10 @@ import java.util.Map;
 /**
  * 机构配置测试
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @SpringBootTest
+@Log4j2
 public class InstConfTest {
 
     @Test
@@ -31,7 +32,7 @@ public class InstConfTest {
         String filePath = "conf/channel/demo/inst_conf/inst_conf.json";
         ClassPathResource resource = new ClassPathResource(filePath);
         File file = resource.getFile();
-        System.out.println(file.getAbsolutePath());
+        log.info("file: {}", file.getAbsolutePath());
 
         FileUtils.writeStringToFile(file, JSON.toJSONString(instConf));
 
@@ -50,6 +51,6 @@ public class InstConfTest {
 
     @Test
     public void time() {
-        System.out.println(System.currentTimeMillis());
+        log.info(System.currentTimeMillis());
     }
 }

@@ -7,7 +7,7 @@ import lombok.ToString;
 /**
  * Money类
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @Data
 @ToString

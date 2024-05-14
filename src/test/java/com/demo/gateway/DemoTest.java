@@ -4,6 +4,7 @@ import com.demo.gateway.api.GatewayService;
 import com.demo.gateway.api.request.GatewayRequest;
 import com.demo.gateway.api.response.GatewayResponse;
 import com.demo.gateway.common.RuntimeHelper;
+import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,9 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Demo渠道UT
  *
- * @author 隐墨星辰（公众号同名）
+ * @author 隐墨星辰
  */
 @SpringBootTest
+@Log4j2
 public class DemoTest {
 
     @Autowired
@@ -35,7 +37,8 @@ public class DemoTest {
 
         RuntimeHelper.clear();
 
-        System.out.println(response);
+        log.info("request: {}", request);
+        log.info("response: {}", response);
         assertNotNull(response);
         assertTrue(response.isSuccess());
 
