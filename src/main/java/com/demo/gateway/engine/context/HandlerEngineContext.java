@@ -1,7 +1,7 @@
 package com.demo.gateway.engine.context;
 
 import com.demo.gateway.engine.function.BaseFunction;
-import com.demo.gateway.engine.handler.chain.HandlerChainType;
+import com.demo.gateway.engine.chain.HandlerChainType;
 import com.demo.gateway.model.InterfaceConf;
 import lombok.Builder;
 import lombok.Data;

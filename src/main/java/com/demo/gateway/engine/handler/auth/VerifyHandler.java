@@ -5,7 +5,7 @@ import com.demo.gateway.engine.context.HandlerEngineContext;
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.HandlerType;
 import com.demo.gateway.groovy.GroovyUtil;
-import com.demo.gateway.model.SignType;
+import com.demo.gateway.common.SignType;
 import com.demo.gateway.model.VerifyConf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

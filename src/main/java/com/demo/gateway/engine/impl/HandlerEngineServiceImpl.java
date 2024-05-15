@@ -7,7 +7,7 @@ import com.demo.gateway.common.RuntimeHelper;
 import com.demo.gateway.engine.HandlerEngineService;
 import com.demo.gateway.engine.context.HandlerEngineContext;
 import com.demo.gateway.engine.handler.BaseHandler;
-import com.demo.gateway.engine.handler.chain.HandlerChainFactory;
+import com.demo.gateway.engine.chain.HandlerChainFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;

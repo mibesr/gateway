@@ -1,6 +1,7 @@
 package com.demo.gateway.model;
 
-import com.demo.gateway.engine.handler.chain.HandlerChainType;
+import com.demo.gateway.common.MessageType;
+import com.demo.gateway.engine.chain.HandlerChainType;
 import lombok.*;
 
 

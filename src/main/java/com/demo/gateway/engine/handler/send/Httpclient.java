@@ -4,7 +4,7 @@ import com.demo.gateway.common.GatewayException;
 import com.demo.gateway.engine.context.HandlerEngineContext;
 import com.demo.gateway.groovy.GroovyUtil;
 import com.demo.gateway.model.HttpSendConf;
-import com.demo.gateway.model.MessageType;
+import com.demo.gateway.common.MessageType;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -57,7 +57,10 @@ public class Httpclient {
 
             // 如果响应实体不为空，将其转换为字符串，并设置为context的原始响应消息
             if (responseEntity != null) {
-                context.setOriginalResponseMessage(EntityUtils.toString(responseEntity));
+
+                String responseMessage = EntityUtils.toString(responseEntity);
+                log.info("Response message: {}", responseMessage);
+                context.setOriginalResponseMessage(responseMessage);
             }
         } catch (Exception e) {
             // 如果在执行请求或处理响应时发生错误，记录错误信息

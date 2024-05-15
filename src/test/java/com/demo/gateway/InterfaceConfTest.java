@@ -2,7 +2,8 @@ package com.demo.gateway;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.demo.gateway.engine.handler.chain.HandlerChainType;
+import com.demo.gateway.common.MessageType;
+import com.demo.gateway.engine.chain.HandlerChainType;
 import com.demo.gateway.model.*;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
@@ -76,8 +77,8 @@ public class InterfaceConfTest {
     private MockConf buildMockConf() {
         return MockConf.builder()
                 .requestContext("")
-                .requestMessage("")
-                .responseMessage("{\n" +
+                .assembledRequestMessage("")
+                .originalResponseMessage("{\n" +
                         "    \"order_id\": \"8888888888899999999\",\n" +
                         "    \"amount\": 888,\n" +
                         "    \"currency\": \"RMB\",\n" +

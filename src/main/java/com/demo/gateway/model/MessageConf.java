@@ -1,5 +1,6 @@
 package com.demo.gateway.model;
 
+import com.demo.gateway.common.MessageType;
 import lombok.*;
 
 /**
@@ -13,6 +14,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MessageConf {
+
+    /**
+     * 消息类型
+     */
+    private MessageType messageType;
 
     /**
      * 外发请求报文模板

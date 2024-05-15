@@ -7,10 +7,9 @@ package com.demo.gateway.engine.function;
  */
 public abstract class BaseFunction {
 
-    /**
-     * 不能重名，否则会被覆盖
-     *
-     * @return
-     */
-    public abstract String getName();
+    private static final String FUNCTION = "Function";
+
+    public String getName() {
+        return this.getClass().getSimpleName().replace(FUNCTION, "");
+    }
 }

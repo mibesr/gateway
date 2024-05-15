@@ -1,7 +1,10 @@
 {
   "groupName": "demo_channel",
   "values": {
-    "host": "http://www.demo.com",
+    "clientId": "9282832828322832",
+    "apiKey": "2sdsifd8sfewif8s8efej8wuf8sedfe88fsef",
+    "merchantId": "29232223",
+    "host": "http://127.0.0.1:8080",
     "refundUrl": "/refund.do",
     "payUrl": "/pay.do",
     "signKeyIndex": "demo_private_key"

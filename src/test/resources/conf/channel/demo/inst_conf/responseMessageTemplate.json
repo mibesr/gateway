@@ -1,0 +1,24 @@
+{
+  "response": {
+    "head": {
+      "clientId": "9282832828322832",
+      "function": "alipay.trade.pay",
+      "requestTime": "2024-09-12 12:00:02",
+      "version": "1.0"
+    },
+    "body": {
+      "tradeNo": "20240501231932432423232",
+      "merchantId": "29232223",
+      "merchantOrderNo": "2024050112342230010111",
+      "amount": {
+        "value": 8888,
+        "currency": "CNY"
+      },
+      "paidTime": "2024-09-12 12:00:02",
+      "resultStatus": "S",
+      "resultCode": "0000",
+      "resultMessage": "order is paid"
+    }
+  },
+  "signature": "JBUYSZhJCaSb5gAkqF2QetrbxWxvNiao3+isB/+X3DVHe9anBPJgUsq+3ITnfNcZD8VzmRR/gXJqjadUyxPkuwKtBMQ3vgejwpXU4R2nPWzHehjVOPveWx8xOPK2Txi1ObPV0c03DQPKn4KXX6xnuYHOlOzfR9E215XUaTXLbMHRR4j8AVjAdVRZvxs+uLQN+uiksWTh6GqMbkmwpJuzYwX7brasCc0frlXGx9ZvrIVSQOJtBL29Wb3wj2z4bK++z5bm+W7LHnrt7pC+nOfkXvnwj3EBb2jRPk4Mg3JVlE2PRyEgPo8sO/AIaCV4U+dZa5+RGFqxw93ywZElVrHyzg=="
+}

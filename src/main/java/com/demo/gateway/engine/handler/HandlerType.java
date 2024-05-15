@@ -15,6 +15,11 @@ public enum HandlerType {
     CONVERT_ORIGINAL_REQUEST_MESSAGE,
 
     /**
+     * 请求转换
+     */
+    CONVERT_REQUEST_MESSAGE,
+
+    /**
      * 签名
      */
     SIGN,

@@ -22,7 +22,7 @@ public class SendHandler extends BaseHandler {
     public void run(HandlerEngineContext context) throws GatewayException {
         if (context.isUseMock()) {
             // 使用mock
-            context.setOriginalResponseMessage(context.getInterfaceConf().getMockConf().getResponseMessage());
+            context.setOriginalResponseMessage(context.getInterfaceConf().getMockConf().getOriginalResponseMessage());
             return;
         }
 

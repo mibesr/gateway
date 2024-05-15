@@ -19,9 +19,4 @@ public class DatetimeFunction extends BaseFunction {
         Date date = new Date(timestamp);
         return sdf.format(date);
     }
-
-    @Override
-    public String getName() {
-        return "Datetime";
-    }
 }

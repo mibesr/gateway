@@ -1,4 +1,4 @@
-package com.demo.gateway.engine.handler.chain;
+package com.demo.gateway.engine.chain;
 
 /**
  * 处理器链类型

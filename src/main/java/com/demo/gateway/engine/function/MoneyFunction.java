@@ -10,12 +10,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MoneyFunction extends BaseFunction {
-    public static Money of(long amount, String currency) {
-        return new Money(amount, currency);
+
+    /**
+     * 创建Money对象
+     *
+     * @param minorUnits
+     * @param currency
+     * @return
+     */
+    public static Money of(long minorUnits, String currency) {
+        return Money.of(minorUnits, currency);
     }
 
-    @Override
-    public String getName() {
-        return "Money";
-    }
 }

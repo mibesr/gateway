@@ -6,7 +6,7 @@ import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.HandlerType;
 import com.demo.gateway.groovy.GroovyUtil;
 import com.demo.gateway.model.SignConf;
-import com.demo.gateway.model.SignType;
+import com.demo.gateway.common.SignType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +42,7 @@ public class SignHandler extends BaseHandler {
             if (SignType.RSA.name().equals(signConf.getSignType())) {
                 String signature = signVerifyHelper.signRSA(signPlain, signConf.getSignKeyIndex(), signConf.getAlgorithm());
 
-                context.getRuntimeContext().put("signature", signature);
+                context.getRequestData().put("signature", signature);
             } else {
                 throw new GatewayException("Not support other sign method!");
             }

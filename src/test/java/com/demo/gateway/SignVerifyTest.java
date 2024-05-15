@@ -16,14 +16,7 @@ public class SignVerifyTest {
 
     @Test
     public void sign() throws Exception {
-        String text = "{\n" +
-                "    \"order_id\": \"8888888888899999999\",\n" +
-                "    \"amount\": \"888\",\n" +
-                "    \"currency\": \"RMB\",\n" +
-                "    \"code\": \"000000\",\n" +
-                "    \"message\": \"success\",\n" +
-                "    \"date\": \"2024-05-12 18:00:24\"\n" +
-                "}";
+        String text = "{\"head\":{\"requestTime\":\"2024-09-12 12:00:02\",\"clientId\":\"9282832828322832\",\"function\":\"alipay.trade.pay\",\"version\":\"1.0\"},\"body\":{\"resultStatus\":\"S\",\"amount\":{\"currency\":\"CNY\",\"value\":8888},\"merchantId\":\"29232223\",\"resultCode\":\"0000\",\"paidTime\":\"2024-09-12 12:00:02\",\"resultMessage\":\"order is paid\",\"merchantOrderNo\":\"2024050112342230010111\"}}";
         String signature = signVerifyHelper.signRSA(text, "demo_channel_sign_private_key", "SHA256withRSA");
 
         System.out.println("signature: " + signature);

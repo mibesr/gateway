@@ -27,9 +27,19 @@ public class DemoTest {
     @Test
     public void run() {
 
+        //TODO 不使用mock，发送外部渠道（本次是发给横批的渠道，需要先启动 com.demo.gateway.GatewayApplication.main）
+//        run(false);
+
+        // 使用mock，不发送真实渠道
+        run(true);
+
+    }
+
+    public void run(boolean useMock) {
+
         // 使用mock，不发送真实渠道
         RuntimeHelper.init();
-        RuntimeHelper.setUseMock(true);
+        RuntimeHelper.setUseMock(useMock);
 
         GatewayRequest request = buildRequest();
 
@@ -46,16 +56,15 @@ public class DemoTest {
 
     private GatewayRequest buildRequest() {
         return GatewayRequest.builder()
-                .requestId("12345678901234567890123456789012")
-                .source("test")
+                .requestId("2024050112342230010111")
+                .source("payment")
                 .interfaceName("demo.pay")
                 .requestContext("{\n" +
                         "    \"payAmount\": {\n" +
-                        "        \"amount\": 888,\n" +
+                        "        \"cent\": 8888,\n" +
                         "        \"currency\": \"RMB\"\n" +
                         "    },\n" +
-                        "    \"orderNo\": \"1111111111222222222333333333344\",\n" +
-                        "    \"userNo\": \"13888888888\",\n" +
+                        "    \"orderNo\": \"2024050112342230010111\",\n" +
                         "    \"orderInfo\": \"test goods\",\n" +
                         "    \"requestTime\": 1715509833656\n" +
                         "}")

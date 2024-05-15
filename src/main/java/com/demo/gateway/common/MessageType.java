@@ -1,4 +1,4 @@
-package com.demo.gateway.model;
+package com.demo.gateway.common;
 
 import lombok.ToString;
 

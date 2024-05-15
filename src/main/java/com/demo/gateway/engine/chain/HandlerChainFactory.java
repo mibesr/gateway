@@ -1,4 +1,4 @@
-package com.demo.gateway.engine.handler.chain;
+package com.demo.gateway.engine.chain;
 
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.HandlerType;
@@ -22,6 +22,7 @@ public class HandlerChainFactory {
      */
     private static final List<HandlerType> INNER_TO_OUTER_HANDLER_TYPE_CHAIN = Arrays.asList(
             HandlerType.CONVERT_ORIGINAL_REQUEST_MESSAGE,
+            HandlerType.CONVERT_REQUEST_MESSAGE,
             HandlerType.SIGN,
             HandlerType.ASSEMBLE_REQUEST_MESSAGE,
             HandlerType.ASSEMBLE_REQUEST_HEAD,
