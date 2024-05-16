@@ -20,6 +20,11 @@ import java.util.Map;
 @ToString
 public class HandlerEngineContext {
     /**
+     * 保存上下文，方便在内联函数使用
+     */
+    private static final ThreadLocal<HandlerEngineContext> CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
+
+    /**
      * 请求参数
      * 包括原始请求参数，签名参数等
      */
@@ -90,6 +95,8 @@ public class HandlerEngineContext {
     private boolean useMock;
 
     public void initRuntimeContext() {
+        CONTEXT_THREAD_LOCAL.set(this);
+
         requestData = new HashMap<>();
         responseData = new HashMap<>();
 
@@ -110,5 +117,21 @@ public class HandlerEngineContext {
         runtimeContext.put("responseData", responseData);
         runtimeContext.put("instConfData", instConfData);
         runtimeContext.put("function", functionData);
+    }
+
+    /**
+     * 获取上下文
+     *
+     * @return
+     */
+    public static HandlerEngineContext getHandlerEngineContext() {
+        return CONTEXT_THREAD_LOCAL.get();
+    }
+
+    /**
+     * 清除上下文
+     */
+    public static void clear() {
+        CONTEXT_THREAD_LOCAL.remove();
     }
 }

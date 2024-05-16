@@ -41,6 +41,8 @@ public class GatewayServiceImpl implements GatewayService {
                     .success(false)
                     .errorMessage(e.getMessage())
                     .build();
+        } finally {
+            HandlerEngineContext.clear();
         }
     }
 

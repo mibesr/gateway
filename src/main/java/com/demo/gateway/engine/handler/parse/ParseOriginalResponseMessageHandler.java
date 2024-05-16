@@ -2,6 +2,7 @@ package com.demo.gateway.engine.handler.parse;
 
 import com.alibaba.fastjson.JSON;
 import com.demo.gateway.common.GatewayException;
+import com.demo.gateway.common.MessageType;
 import com.demo.gateway.engine.context.HandlerEngineContext;
 import com.demo.gateway.engine.handler.BaseHandler;
 import com.demo.gateway.engine.handler.HandlerType;
@@ -24,7 +25,11 @@ public class ParseOriginalResponseMessageHandler extends BaseHandler {
         String originalResponseMessage = context.getOriginalResponseMessage();
         assertNotEmpty(originalResponseMessage, "originalResponseMessage can not be empty!");
 
-        context.getResponseData().putAll(JSON.parseObject(context.getOriginalResponseMessage(), HashMap.class));
+        if (MessageType.JSON.equals(context.getInterfaceConf().getMessageConf().getMessageType())) {
+            context.getResponseData().putAll(JSON.parseObject(context.getOriginalResponseMessage(), HashMap.class));
+        } else {
+            throw new GatewayException("Not support other message type!");
+        }
     }
 
 

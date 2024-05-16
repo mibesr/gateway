@@ -1,7 +1,6 @@
 package com.demo.gateway.common;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.ToString;
 
 import java.math.BigDecimal;
@@ -30,33 +29,6 @@ public class Money {
     private Currency currency;
 
     /**
-     * 获取金额数，单位为元
-     * 内部系统强制使用getAmount，不能使用getCents。
-     * 比如：人民币 1元，返回1，100分返回1。日元最小单位是1元，返回1
-     * @return
-     */
-    public BigDecimal getAmount() {
-        return BigDecimal.valueOf(cent, currency.getDefaultFractionDigits());
-    }
-
-    /**
-     * 返回币种最小单位
-     *  内部系统强制使用getAmount，不能使用getCents，除非在和银行渠道对接时，需要使用getCent。
-     * @return
-     */
-    public long getCent() {
-        return cent;
-    }
-
-    /**
-     * 返回元与分的比值，比如人民币，返回100，日元返回1
-     */
-    public final int getCentFactor() {
-        return currency.getDefaultFractionDigits();
-    }
-
-    /**
-     *
      * @param minorUnits
      * @param currencyCode
      * @return
@@ -81,6 +53,34 @@ public class Money {
         money.cent = minorUnits;
 
         return money;
+    }
+
+    /**
+     * 获取金额数，单位为元
+     * 内部系统强制使用getAmount，不能使用getCents。
+     * 比如：人民币 1元，返回1，100分返回1。日元最小单位是1元，返回1
+     *
+     * @return
+     */
+    public BigDecimal getAmount() {
+        return BigDecimal.valueOf(cent, currency.getDefaultFractionDigits());
+    }
+
+    /**
+     * 返回币种最小单位
+     * 内部系统强制使用getAmount，不能使用getCents，除非在和银行渠道对接时，需要使用getCent。
+     *
+     * @return
+     */
+    public long getCent() {
+        return cent;
+    }
+
+    /**
+     * 返回元与分的位数，比如人民币，返回2，日元返回0
+     */
+    public final int getCentFactor() {
+        return currency.getDefaultFractionDigits();
     }
 
     /**
