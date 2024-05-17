@@ -20,6 +20,11 @@ import java.util.Map;
 @ToString
 public class HandlerEngineContext {
     /**
+     * 签名串
+     */
+    private static final String SIGNATURE = "signature";
+
+    /**
      * 保存上下文，方便在内联函数使用
      */
     private static final ThreadLocal<HandlerEngineContext> CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
@@ -117,6 +122,22 @@ public class HandlerEngineContext {
         runtimeContext.put("responseData", responseData);
         runtimeContext.put("instConfData", instConfData);
         runtimeContext.put("function", functionData);
+    }
+
+    /**
+     * 获取渠道返回报文的签名
+     * @return
+     */
+    public String getResponseSignature() {
+        return (String) responseData.get(SIGNATURE);
+    }
+
+    /**
+     * 设置请求报文的签名
+     * @param signature
+     */
+    public void setRequestSignature(String signature) {
+        requestData.put(SIGNATURE, signature);
     }
 
     /**

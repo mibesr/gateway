@@ -42,7 +42,7 @@ public class SignHandler extends BaseHandler {
             if (SignType.RSA.name().equals(signConf.getSignType())) {
                 String signature = signVerifyHelper.signRSA(signPlain, signConf.getSignKeyIndex(), signConf.getAlgorithm());
 
-                context.getRequestData().put("signature", signature);
+                context.setRequestSignature(signature);
             } else {
                 throw new GatewayException("Not support other sign method!");
             }

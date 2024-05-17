@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
+ * 网关服务实现
+ *
  * @author 隐墨星辰
  */
 @Component
@@ -22,6 +24,8 @@ public class GatewayServiceImpl implements GatewayService {
     @Override
     public GatewayResponse process(GatewayRequest request) {
 
+        log.info("request: {}", request);
+
         try {
             HandlerEngineContext context = buildContext(request);
             engineService.run(context);
@@ -33,7 +37,10 @@ public class GatewayServiceImpl implements GatewayService {
             log.info("responseMessageTemplate: {}", context.getInterfaceConf().getMessageConf().getResponseMessageTemplate());
             log.info("assembledResponseMessage: {}", context.getAssembledResponseMessage());
 
-            return buildResponse(context.getAssembledResponseMessage());
+            GatewayResponse response = buildResponse(context.getAssembledResponseMessage());
+            log.info("response: {}", response);
+
+            return response;
         } catch (Exception e) {
             log.error("An error occurred, request: {}", request, e);
 

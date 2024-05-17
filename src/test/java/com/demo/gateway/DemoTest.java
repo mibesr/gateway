@@ -46,9 +46,6 @@ public class DemoTest {
         GatewayResponse response = gatewayService.process(request);
 
         RuntimeHelper.clear();
-
-        log.info("request: {}", request);
-        log.info("response: {}", response);
         assertNotNull(response);
         assertTrue(response.isSuccess());
 

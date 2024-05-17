@@ -37,7 +37,7 @@ public class VerifyHandler extends BaseHandler {
 
         String verifyPlain = GroovyUtil.make(verifyPlainTemplate, context.getRuntimeContext());
 
-        String signature = context.getResponseData().get("signature").toString();
+        String signature = context.getResponseSignature();
         assertNotEmpty(signature, "signature can not be empty!");
 
         try {

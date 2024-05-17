@@ -3,6 +3,7 @@ package com.demo.gateway.common;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
@@ -17,7 +18,7 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
  */
 @ToString
 @AllArgsConstructor
-public class Money {
+public class Money implements Comparable<Money>, Serializable {
     /**
      * 币种最小单位
      */
@@ -28,7 +29,11 @@ public class Money {
      */
     private Currency currency;
 
+    private static final RoundingMode DEFAULT_ROUNDING = RoundingMode.HALF_EVEN;
+
     /**
+     * 创建Money对象
+     *
      * @param minorUnits
      * @param currencyCode
      * @return
@@ -51,6 +56,36 @@ public class Money {
         Money money = new Money(0, currency);
 
         money.cent = minorUnits;
+
+        return money;
+    }
+
+
+    /**
+     * 创建Money对象
+     *
+     * @param amount
+     * @param currencyCode
+     * @return
+     */
+    public static Money of(BigDecimal amount, String currencyCode) {
+        Currency currency = Currency.getInstance(currencyCode);
+        assertNotNull(currency, "currency can not be null: " + currencyCode);
+
+        return of(amount, currency);
+    }
+
+    /**
+     * 创建Money对象
+     *
+     * @param amount
+     * @param currency
+     * @return
+     */
+    public static Money of(BigDecimal amount, Currency currency) {
+        Money money = new Money(0, currency);
+
+        money.cent = amount.movePointRight(currency.getDefaultFractionDigits()).longValue();
 
         return money;
     }
@@ -86,64 +121,128 @@ public class Money {
     /**
      * 除法
      *
-     * @param divisor
+     * @param value
      * @return
      */
-    public Money divide(long divisor) {
-        return divide(divisor, RoundingMode.HALF_EVEN);
+    public Money divide(long value) {
+        return divide(value, DEFAULT_ROUNDING);
     }
 
     /**
      * 除法
      *
-     * @param divisor
+     * @param value
      * @return
      */
-    public Money divide(long divisor, RoundingMode roundingMode) {
-        BigDecimal newCent = BigDecimal.valueOf(this.cent).divide(BigDecimal.valueOf(divisor), roundingMode);
+    public Money divide(BigDecimal value) {
+        BigDecimal newCent = BigDecimal.valueOf(this.cent).divide(value, DEFAULT_ROUNDING);
+        return Money.of(newCent.longValue(), this.currency);
+    }
+    /**
+     * 除法
+     *
+     * @param value
+     * @return
+     */
+    public Money divide(BigDecimal value, RoundingMode roundingMode) {
+        BigDecimal newCent = BigDecimal.valueOf(this.cent).divide(value, roundingMode);
+        return Money.of(newCent.longValue(), this.currency);
+    }
+
+    /**
+     * 除法
+     *
+     * @param value
+     * @param roundingMode
+     * @return
+     */
+    public Money divide(long value, RoundingMode roundingMode) {
+        BigDecimal newCent = BigDecimal.valueOf(this.cent).divide(BigDecimal.valueOf(value), roundingMode);
         return Money.of(newCent.longValue(), this.currency);
     }
 
     /**
      * 加法
      *
-     * @param other
+     * @param value
      * @return
      */
-    public Money add(Money other) {
-        assertSameCurrency(other);
-        return Money.of(this.cent + other.cent, this.currency);
+    public Money add(Money value) {
+        assertSameCurrency(value);
+        return Money.of(this.cent + value.cent, this.currency);
     }
 
     /**
      * 减法
      *
-     * @param other
+     * @param value
      * @return
      */
-    public Money subtract(Money other) {
-        assertSameCurrency(other);
-        return Money.of(this.cent - other.cent, this.currency);
+    public Money subtract(Money value) {
+        assertSameCurrency(value);
+        return Money.of(this.cent - value.cent, this.currency);
     }
 
     /**
      * 乘法
      *
-     * @param factor
+     * @param value
      * @return
      */
-    public Money multiply(long factor) {
-        return Money.of(this.cent * factor, this.currency);
+    public Money multiply(long value) {
+        return Money.of(this.cent * value, this.currency);
     }
+
+    /**
+     * 乘法
+     *
+     * @param value
+     * @param roundingMode
+     * @return
+     */
+    public Money multiply(BigDecimal value, RoundingMode roundingMode) {
+        long newCent = BigDecimal.valueOf(this.cent).multiply(value).setScale(0, roundingMode).longValue();
+        return Money.of(newCent, this.currency);
+    }
+
+    public Money multiply(BigDecimal value) {
+        long newCent = BigDecimal.valueOf(this.cent).multiply(value).setScale(0, DEFAULT_ROUNDING).longValue();
+        return Money.of(newCent, this.currency);
+    }
+
 
     /**
      * 相同币种比较
      *
-     * @param other
+     * @param value
      */
-    private void assertSameCurrency(Money other) {
-        if (!Objects.equals(this.currency, other.currency)) {
+    private void assertSameCurrency(Money value) {
+        if (!Objects.equals(this.currency, value.currency)) {
             throw new IllegalArgumentException("Money instances must have the same currency");
         }
+    }
+
+    /**
+     * 对比
+     *
+     * @param value the object to be compared.
+     * @return
+     */
+    @Override
+    public int compareTo(Money value) {
+        assertSameCurrency(value);
+        return Long.compare(this.cent, value.cent);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Money) {
+            Money value = (Money) obj;
+            return this.cent == value.cent && Objects.equals(this.currency, value.currency);
+        }
+        return false;
     }
 }

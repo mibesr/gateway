@@ -20,11 +20,18 @@
 1. api: 服务入口
 2. service: 服务实现
 3. engine: 处理器引擎
+   - |-- chain: 责任链
+   - |-- context: 上下文
+   - |-- function: 内联函数
+   - |-- handler: 处理器
 4. model：渠道接口配置模型
-5. groovy: groovy模板处理器
+5. groovy: groovy模板处理器（参数转换依赖）
 6. common：公共类
 7. cache：配置信息缓存
 8. 测试类入口：src/test/java/com/demo/gateway/DemoTest.java
+
+源码详细讲解：[源码讲解：JAVA版低代码报文网关-通过简单配置快速对接银行渠道
+](https://mp.weixin.qq.com/s?__biz=MzkwOTYyODA4Nw==&mid=2247484612&idx=1&sn=a15625c3c97a4f9b57cff9ba95c230ac)
 
 ### 参与贡献
 
@@ -40,3 +47,9 @@
 公众号/知乎/掘金：隐墨星辰
 
 知识星球：支付翰林院
+
+### 联系方式
+有个小群不定时解答一些问题或知识点，有兴趣的同学可先加微信（yinmon_sc）后进入，添加微信请备注：666。
+
+### 更多专业资料
+《百图解码支付系统设计与实现》专栏系列文章PDF合集，以及电子书《图解支付系统设计与实现》（已写9万字左右）不定时更新，欢迎关注我的公众号获取：隐墨星辰。
